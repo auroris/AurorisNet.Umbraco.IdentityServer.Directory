@@ -16,7 +16,7 @@ A report is easier to act on when it includes:
 ## Versions that get fixes
 
 A fix is published as a new package version. Earlier versions stay as they are, so install
-the newest version for your site; a `1.*` reference picks it up on the next restore.
+the newest version.
 
 ## What the package covers
 
@@ -27,13 +27,15 @@ access is by design:
   backoffice user for anyone in it, in the user groups Umbraco lets that user assign. A user
   with access to the Members section can do the same for members.
 - Each search and lookup runs as the site: as its process account against Active Directory
-  or local accounts, and with `Directory:IdentityServerApiKey` or the process account against
-  an identity server. Those credentials decide what the directory shows.
+  or local accounts, and with `Directory:IdentityServerApiKey` or the process account
+  against an identity server. Those credentials decide what the directory shows.
 - Anyone who can write the site's configuration chooses the directory, the API key and the
-  login providers new accounts are linked under.
+  login providers that new accounts are linked under.
+- `Directory:IdentityServerAcceptAnyServerCertificate` turns off certificate validation for
+  the requests to the identity server.
 
-A vulnerability is anything beyond that: a search or account creation by someone without
-access to the section, an account linked to a SID other than the one the directory returned
-for the chosen person, a name, email or SID taken from the request rather than the directory,
-or an API key written to a log or a response. For a vulnerability in Umbraco itself, follow
+A vulnerability is anything beyond that. Examples are a search or an account creation by
+someone without access to the section, an account linked to a SID other than the one the
+directory returned for the chosen person, a name or email taken from the request when the
+directory holds another, or an API key written to a log or a response. For a vulnerability in Umbraco itself, follow
 [Umbraco's security policy](https://github.com/umbraco/Umbraco-CMS/security/policy).

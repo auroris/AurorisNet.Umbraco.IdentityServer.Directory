@@ -41,8 +41,8 @@
     <Using Include="Microsoft.Extensions.Logging" />
     <Using Include="Umbraco.Cms.Core.DependencyInjection" />
     <Using Include="Umbraco.Extensions" />
-    <!-- nuget.org renders Markdown without HTML or relative links, so the package has its own README. -->
-    <None Include="../docs/NUGET.md" Pack="true" PackagePath="README.md" />
+    <!-- The README also serves nuget.org, which renders Markdown without HTML or relative links. -->
+    <None Include="../README.md" Pack="true" PackagePath="/" />
     <None Include="../docs/images/icon.png" Pack="true" PackagePath="/" />
     <None Include="../LICENSE" Pack="true" PackagePath="/" />
     <Content Update="appsettings-schema*.json;umbraco-package-schema.json" Pack="false" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />

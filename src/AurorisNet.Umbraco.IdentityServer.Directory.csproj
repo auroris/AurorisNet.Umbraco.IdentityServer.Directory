@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <PackageId>AurorisNet.Umbraco.IdentityServer.Directory</PackageId>
+    <!-- Only the package id carries the AurorisNet prefix; the assembly and namespace keep the plain name. -->
+    <AssemblyName>DirectoryAccounts</AssemblyName>
+    <RootNamespace>DirectoryAccounts</RootNamespace>
+    <Title>Umbraco Add from Directory</Title>
+    <!-- Local builds are a prerelease, so NuGet's cache never mixes them with a published version. The release
+         workflow supplies the published version. -->
+    <Version>0.0.0-local</Version>
+    <Authors>Auroris</Authors>
+    <Description>Adds "Add from directory" to the Users and Members sections of Umbraco 18: search Active Directory, an identity server's directory API or the computer's local accounts, and create an approved backoffice user or member that is linked to the person's Windows SID from the start. Windows only. Registers automatically through a composer.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;backoffice;active-directory;directory;users;members;sso</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory/releases/tag/v$(Version)</PackageReleaseNotes>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+    <!-- The backoffice extension must sit at /App_Plugins/DirectoryAccounts/, not under /_content/<package id>/. -->
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+    <!-- The people lookup builds from the sibling IdentityServer checkout until its package is on nuget.org. Set
+         UseIdentityServerSource to false to use the package instead, as the release workflow does. -->
+    <IdentityServerRoot Condition="'$(IdentityServerRoot)' == ''">$(MSBuildThisFileDirectory)..\..\IdentityServer</IdentityServerRoot>
+    <UseIdentityServerSource Condition="'$(UseIdentityServerSource)' == ''">true</UseIdentityServerSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Umbraco.Cms.Infrastructure" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" />
+    <ProjectReference Include="$(IdentityServerRoot)\IdentityServer.Directory\IdentityServer.Directory.csproj" Condition="'$(UseIdentityServerSource)' == 'true'" />
+    <PackageReference Include="AurorisNet.IdentityServer.Directory" Condition="'$(UseIdentityServerSource)' != 'true'" />
+    <InternalsVisibleTo Include="DirectoryAccounts.Tests" />
+    <Using Include="IdentityServer.Directory" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="Umbraco.Cms.Core.DependencyInjection" />
+    <Using Include="Umbraco.Extensions" />
+    <!-- nuget.org renders Markdown without HTML or relative links, so the package has its own README. -->
+    <None Include="../docs/NUGET.md" Pack="true" PackagePath="README.md" />
+    <None Include="../docs/images/icon.png" Pack="true" PackagePath="/" />
+    <None Include="../LICENSE" Pack="true" PackagePath="/" />
+    <Content Update="appsettings-schema*.json;umbraco-package-schema.json" Pack="false" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+  <!-- A published package must depend on the published lookup: a project reference would name a package version that
+       nobody published. -->
+  <Target Name="RefuseLookupSourceInReleasePackage" BeforeTargets="GenerateNuspec"
+          Condition="'$(UseIdentityServerSource)' == 'true' and '$(ContinuousIntegrationBuild)' == 'true'">
+    <Error Text="A release package needs the published AurorisNet.IdentityServer.Directory. Pack with -p:UseIdentityServerSource=false." />
+  </Target>
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>DirectoryAccounts.Tests</AssemblyName>
+    <RootNamespace>DirectoryAccounts.Tests</RootNamespace>
+    <IsTestProject>true</IsTestProject>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <IsPackable>false</IsPackable>
+    <CompressionEnabled>false</CompressionEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="Umbraco.Cms" />
+    <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
+    <ProjectReference Include="../../src/AurorisNet.Umbraco.IdentityServer.Directory.csproj" />
+    <Using Include="Xunit" />
+    <Using Include="IdentityServer.Directory" />
+  </ItemGroup>
+</Project>

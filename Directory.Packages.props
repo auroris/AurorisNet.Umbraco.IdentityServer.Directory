@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Compile the package against the oldest supported API. A site restores its own Umbraco 18 release. -->
+    <PackageVersion Include="Umbraco.Cms.Infrastructure" Version="[$(UmbracoMinimumVersion), 19.0.0)" />
+    <PackageVersion Include="Umbraco.Cms.Api.Management" Version="[$(UmbracoMinimumVersion), 19.0.0)" />
+    <!-- The people lookup, used when UseIdentityServerSource is false, as the release workflow sets it. Keep it at the
+         IdentityServer release whose AurorisNet.IdentityServer.Directory package this package was tested with. -->
+    <PackageVersion Include="AurorisNet.IdentityServer.Directory" Version="1.2.0" />
+    <PackageVersion Include="Umbraco.Cms" Version="[$(UmbracoVersion)]" />
+    <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="[$(UmbracoVersion)]" />
+    <PackageVersion Include="xunit.v3" Version="4.0.3" />
+  </ItemGroup>
+</Project>

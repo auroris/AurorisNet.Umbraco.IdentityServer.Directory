@@ -10,7 +10,7 @@
     <Version>0.0.0-local</Version>
     <Authors>Auroris</Authors>
     <Description>Adds "Add from directory" to the Users and Members sections of Umbraco 18: search Active Directory, an identity server's directory API or the computer's local accounts, and create an approved backoffice user or member that is linked to the person's Windows SID from the start. Windows only. Registers automatically through a composer.</Description>
-    <PackageTags>umbraco;umbraco-marketplace;backoffice;active-directory;directory;users;members;sso</PackageTags>
+    <PackageTags>umbraco;backoffice;active-directory;directory;users;members;sso</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>

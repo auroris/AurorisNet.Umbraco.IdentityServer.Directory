@@ -1,5 +1,22 @@
 # Umbraco Add from Directory
 
+> **Warning: additional packages and configuration required.** This package is part of a
+> larger directory and single sign-on implementation. It requires:
+>
+> - A supported Umbraco 18 website running on .NET 10.
+> - [`AurorisNet.IdentityServer.Directory`](https://github.com/auroris/AurorisNet.IdentityServer/blob/main/IdentityServer.Directory/README.md)
+>   and `AurorisNet.ActiveDirectory`, installed automatically as NuGet dependencies.
+> - A configured directory source: Active Directory with read access for the site's Windows
+>   identity, local Windows accounts for development, or an external identity server serving
+>   the [directory API](https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory/blob/main/docs/REFERENCE.md#identity-server)
+>   with its address and authentication configured.
+> - For the created accounts to sign in, install and configure
+>   [`AurorisNet.Umbraco.IdentityServer.SSO`](https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.SSO)
+>   or another provider that uses Windows SIDs, and match the `BackOfficeLoginProvider` and
+>   `MemberLoginProvider` settings to that provider's scheme names.
+>
+> Installing this package alone does not configure directory access or provide single sign-on.
+
 Create Umbraco backoffice users and members from the directory, linked to each person's
 Windows SID before they first sign in.
 

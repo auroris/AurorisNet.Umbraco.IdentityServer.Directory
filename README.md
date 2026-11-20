@@ -251,14 +251,14 @@ fails the tests.
 
 ## Releases
 
-The package follows Umbraco and `AurorisNet.IdentityServer.Directory`. Each day,
+The package follows Umbraco and `AurorisNet.IdentityServer.Directory`. Each week,
 `umbraco-releases.yml` looks on nuget.org for new Umbraco releases and tests the package on
 each one. A release that passes is committed to `UmbracoReleases` in
 `Directory.Build.props`, which also rewrites the ranges under **Supported versions**, and
-`release.yml` then publishes a new version. A release that fails gets an issue.
+`weekly-release.yml` then publishes a new version. A release that fails gets an issue.
 
 Dependabot follows `AurorisNet.IdentityServer.Directory`. An update that passes `ci.yml` is
-merged and starts a release.
+merged. One weekly release publishes the updates and the Umbraco releases of the week.
 
 Versions are numbered MAJOR.MINOR.PATCH. A new Umbraco release raises the patch number, or
 the minor number when it is a new Umbraco minor version. A person starts the first release

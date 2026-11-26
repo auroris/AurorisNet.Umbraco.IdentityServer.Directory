@@ -4,12 +4,12 @@
     <!-- Only the package id carries the AurorisNet prefix; the assembly and namespace keep the plain name. -->
     <AssemblyName>DirectoryAccounts</AssemblyName>
     <RootNamespace>DirectoryAccounts</RootNamespace>
-    <Title>Umbraco Add from Directory</Title>
+    <Title>Add from Directory</Title>
     <!-- Local builds are a prerelease, so NuGet's cache never mixes them with a published version. The release
          workflow supplies the published version. -->
     <Version>0.0.0-local</Version>
     <Authors>Auroris</Authors>
-    <Description>Adds "Add from directory" to the Users and Members sections of Umbraco 18: search Active Directory, an identity server's directory API or the computer's local accounts, and create an approved backoffice user or member that is linked to the person's Windows SID from the start. Windows only. Registers automatically through a composer.</Description>
+    <Description>Adds an 'Add from directory' dialog to Umbraco 18 Users and Members to create accounts pre-linked to a Windows SID from Active Directory, local accounts, or an IdentityServer directory API.</Description>
     <PackageTags>umbraco;backoffice;active-directory;directory;users;members;sso</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>

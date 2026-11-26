@@ -1,8 +1,16 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Add from Directory",
+  "Description": "Adds an 'Add from directory' dialog to Umbraco 18 Users and Members to create accounts pre-linked to a Windows SID from Active Directory, local accounts, or an IdentityServer directory API.",
   "Category": "Developer Tools",
   "LicenseTypes": ["Free"],
   "PackageType": "Package",
   "DocumentationUrl": "https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory#settings",
-  "IssueTrackerUrl": "https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory/issues"
+  "IssueTrackerUrl": "https://github.com/auroris/AurorisNet.Umbraco.IdentityServer.Directory/issues",
+  "RelatedPackages": [
+    {
+      "PackageId": "AurorisNet.Umbraco.IdentityServer.SSO",
+      "Description": "Companion SSO package that signs in users and members linked to their Windows SID."
+    }
+  ]
 }
